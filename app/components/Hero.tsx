@@ -11,14 +11,17 @@ import { StreamScreen } from './StreamScreen'
 import { TwitchTopStreams } from './TwitchTopStreams'
 import { YoutubeTopStreams } from './YoutubeTopStreams'
 import { ChannelCard } from './ChannelCard'
+import type { RootState } from '../modules/store'
+
 export const Hero = () => {
 
-  const selectName = useSelector((state) => state.counter.name)
-  const selectId = useSelector((state) => state.counter.chnId)
-  const selectPlt = useSelector((state) => state.counter.platform)
-  const searchResult = useSelector((state) => state.counter.search)
-  const screen = useSelector((state) => state.counter.screen)
-  const view = useSelector((state) => state.counter.view)
+
+  const selectName = useSelector((state: RootState) => state.counter.name)
+  const selectId = useSelector((state: RootState) => state.counter.chnId)
+  const selectPlt = useSelector((state: RootState) => state.counter.platform)
+  const searchResult = useSelector((state: RootState) => state.counter.search)
+  const screen = useSelector((state: RootState) => state.counter.screen)
+  const view = useSelector((state: RootState) => state.counter.view)
   const [inputValue, setInputValue] = useState("")
 
 
@@ -50,7 +53,7 @@ export const Hero = () => {
             <div className='flex flex-col pb-4 items-center'>
               {/* search result */}
               { Object.keys(searchResult).length !== 0 && (
-                searchResult.message.data.map((value) => (
+                searchResult.message.data.map((value: any) => (
                   <ChannelCard key={value.channel_id} iconUrl={value.thumbnail_url} channel_name={value.channel_name} channel_id={value.channel_id} platform={searchResult.message.platform} title={value.title} game_name={value.game_name} is_live={value.is_live} />
                 ))
               )}
@@ -95,7 +98,7 @@ export const Hero = () => {
              <div className='flex flex-col pb-4 items-center'>
                {/* search result */}
                { Object.keys(searchResult).length !== 0 && (
-                searchResult.message.data.map((value) => (
+                searchResult.message.data.map((value: any) => (
                   <ChannelCard key={value.channel_id} iconUrl={value.thumbnail_url} channel_name={value.channel_name} channel_id={value.channel_id} platform={searchResult.message.platform} title={value.title} game_name={value.game_name} is_live={value.is_live} />
                   // <>{value.channel_name}</>
                 ))

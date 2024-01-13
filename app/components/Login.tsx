@@ -10,6 +10,8 @@ import { signIn, signOut, useSession } from "next-auth/react"
 import { persistStore } from "redux-persist"
 import { useSelector } from "react-redux"
 import { useDispatch } from 'react-redux'
+import type { RootState } from '../modules/store'
+
 
 import {
   DropdownMenu,
@@ -28,11 +30,11 @@ export const Login = () => {
 
   const { setTheme } = useTheme();
   const { data: session, status } = useSession();
-  const loginSession = useSelector((state) => state.counter.loginSession);
-  const twitchSession = useSelector((state) => state.counter.twitchSession);
-  const youtubeSession = useSelector((state) => state.counter.youtubeSession);
-  const tchannels = useSelector((state) => state.counter.tchannels);
-  const ychannels = useSelector((state) => state.counter.ychannels);
+  const loginSession = useSelector((state: RootState) => state.counter.loginSession);
+  const twitchSession = useSelector((state: RootState) => state.counter.twitchSession);
+  const youtubeSession = useSelector((state: RootState) => state.counter.youtubeSession);
+  const tchannels = useSelector((state: RootState) => state.counter.tchannels);
+  const ychannels = useSelector((state: RootState) => state.counter.ychannels);
 
   const dispatch = useDispatch();
 

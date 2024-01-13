@@ -1,7 +1,23 @@
 "use client"
-import { createSlice } from "@reduxjs/toolkit"
+import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 
-const initialState = {
+interface MyState {
+  name: string
+  chnId: string
+  clientId: string
+  tchannels: any
+  ychannels: any
+  platform: string
+  twitchSession: string
+  youtubeSession: string
+  loginSession: string
+  selectPlt: string
+  search: any
+  view: string
+  screen: string
+}
+
+const initialState: MyState = {
   name: "",
   chnId: "",
   clientId: "",
@@ -15,7 +31,7 @@ const initialState = {
   search: {},
   view: "single",
   screen: "1",
-}
+} 
 
 export const Slice = createSlice({
   name: "selector",

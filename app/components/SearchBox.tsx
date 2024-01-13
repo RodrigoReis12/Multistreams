@@ -8,12 +8,14 @@ import { BsTwitch, BsYoutube } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { saveSearchResult, selectPlatform } from '../modules/slice';
+import type { RootState } from '../modules/store'
+
 export const SearchBox = () => {
 
   const [inputValue, setInputValue] = useState("");
-  const platform = useSelector((state) => state.counter.selectPlt) 
-  const twitchSession = useSelector((state) => state.counter.twitchSession)
-  const youtubeSession = useSelector((state) => state.counter.youtubeSession)
+  const platform = useSelector((state: RootState) => state.counter.selectPlt) 
+  const twitchSession = useSelector((state: RootState) => state.counter.twitchSession)
+  const youtubeSession = useSelector((state: RootState) => state.counter.youtubeSession)
   const dispatch = useDispatch();
   
   const searchStream = async () => {
