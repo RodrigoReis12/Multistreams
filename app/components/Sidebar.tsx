@@ -7,6 +7,8 @@ import { BsTwitch, BsYoutube } from "react-icons/bs"
 import { Button } from '@/components/ui/button'
 import { SidebarCard } from './SidebarCard'
 import { useSelector } from 'react-redux'
+import type { RootState } from '../modules/store'
+
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   playlists: Playlist[]
@@ -14,8 +16,8 @@ interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export const Sidebar = ({ className, playlists }: SidebarProps) => {
 
-  const tchannels: any = useSelector((state) => state.counter.tchannels)
-  const ychannels: any = useSelector((state) => state.counter.ychannels)
+  const tchannels: any = useSelector((state: RootState) => state.counter.tchannels)
+  const ychannels: any = useSelector((state: RootState) => state.counter.ychannels)
 
   return (
     <div className={cn("pb-12", className)}>

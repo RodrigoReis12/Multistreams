@@ -3,12 +3,14 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Skeleton } from "@/components/ui/skeleton"
 import { ThumbCard } from './ThumbCard'
+import type { RootState } from '../modules/store'
+
 
 export const YoutubeTopStreams = () => {
 
   const [result, setResult] = useState({ message: { data: [{ user_login: "", thumbnail_url: "" }] } })
   const [isLoading, setIsLoading] = useState(true)
-  const session = useSelector((state) => state.counter.youtubeSession)
+  const session = useSelector((state: RootState) => state.counter.youtubeSession)
 
 
   useEffect(() => {

@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { selected } from '../modules/slice'
+import type { RootState } from '../modules/store'
 import Image from 'next/image'
 
 type Props = {

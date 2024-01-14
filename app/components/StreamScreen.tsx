@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { StreamBox } from './StreamBox'
+import type { RootState } from '../modules/store'
+
 
 export const StreamScreen = () => {
 
-  const screen = useSelector((state) => state.counter.screen)
-  const view = useSelector((state) => state.counter.view)
-  const selectId = useSelector((state) => state.counter.chnId)
-  const selectPlt = useSelector((state) => state.counter.platform)
+  const screen = useSelector((state: RootState) => state.counter.screen)
+  const view = useSelector((state: RootState) => state.counter.view)
+  const selectId = useSelector((state: RootState) => state.counter.chnId)
+  const selectPlt = useSelector((state: RootState) => state.counter.platform)
   const [screen1Info, setScreen1Info] = useState({})
   const [screen2Info, setScreen2Info] = useState({})
   const [screen3Info, setScreen3Info] = useState({})
