@@ -30,7 +30,7 @@ export const Sidebar = ({ className, playlists }: SidebarProps) => {
           <div className='space-y-1'>
             {tchannels.data !== undefined && (
 
-              tchannels.data.map((link) => (
+              tchannels.data.map((link: any) => (
                 <SidebarCard key={link.channel_id} name={link.display_name}
                   chnId={link.login} chnPlt={tchannels.platform} iconUrl={link.profile_image_url}
                 />
@@ -47,7 +47,7 @@ export const Sidebar = ({ className, playlists }: SidebarProps) => {
           </h2>
           <div className='space-y-1'>
             {ychannels.data !== undefined && (
-              ychannels.data.map((link) => (
+              ychannels.data.map((link: any) => (
                 <SidebarCard key={link.channel_id} 
                   name={link.channel_name}
                   chnId={link.video_id} chnPlt={ychannels.platform} iconUrl={link.thumbnails}

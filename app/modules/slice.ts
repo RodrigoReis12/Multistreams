@@ -8,9 +8,9 @@ interface MyState {
   tchannels: any
   ychannels: any
   platform: string
-  twitchSession: string
-  youtubeSession: string
-  loginSession: string
+  twitchSession: any
+  youtubeSession: any
+  loginSession: any
   selectPlt: string
   search: any
   view: string

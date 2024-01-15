@@ -10,8 +10,8 @@ import { signIn, signOut, useSession } from "next-auth/react"
 import { persistStore } from "redux-persist"
 import { useSelector } from "react-redux"
 import { useDispatch } from 'react-redux'
-import type { RootState } from '../modules/store'
 
+import type { RootState } from '../modules/store'
 
 import {
   DropdownMenu,
@@ -29,12 +29,16 @@ import { persistor } from '../modules/store'
 export const Login = () => {
 
   const { setTheme } = useTheme();
-  const { data: session, status } = useSession();
+  const { data: session, status }: any = useSession();
   const loginSession = useSelector((state: RootState) => state.counter.loginSession);
   const twitchSession = useSelector((state: RootState) => state.counter.twitchSession);
   const youtubeSession = useSelector((state: RootState) => state.counter.youtubeSession);
   const tchannels = useSelector((state: RootState) => state.counter.tchannels);
   const ychannels = useSelector((state: RootState) => state.counter.ychannels);
+
+  const typedLoginSession = loginSession as { provider?: string; accessToken?: string } | undefined;
+  const accessToken: string | undefined = typedLoginSession?.accessToken ?? "default value"
+
 
   const dispatch = useDispatch();
 
@@ -48,9 +52,9 @@ export const Login = () => {
         "Authorization": "OAuth " + session?.accessToken
       }
     }).then((res) => res.json())
-    .then((res) => {
-      dispatch(twitchChannels(res.message))
-    })
+      .then((res) => {
+        dispatch(twitchChannels(res.message))
+      })
   }
 
   const getYoutube = async () => {
@@ -59,53 +63,81 @@ export const Login = () => {
         "Authorization": "OAuth " + session?.accessToken
       }
     }).then((res) => res.json())
-    .then((res) => {
-      dispatch(youtubeChannels(res.message))
-    })
+      .then((res) => {
+        dispatch(youtubeChannels(res.message))
+      })
   }
+
 
   const validateSession = async () => {
-    if(loginSession?.provider !== undefined) {
-      if(loginSession?.provider === "twitch") {
+    // Adicione um tipo explícito para loginSession
+   
+  
+    if (typedLoginSession?.provider !== undefined && typedLoginSession.provider === "twitch") {
+      // Adicione um tipo explícito para accessToken
+  
+      if (accessToken !== undefined) {
         const res = await fetch("/api/validate-session?platform=twitch", {
           headers: {
-            "Authorization": "OAuth " + loginSession?.accessToken
+            "Authorization": "OAuth " + accessToken
           }
-        })
-        if(!res.ok) {
-          console.log("invalid token", loginSession?.accessToken);
+        });
+  
+        if (!res.ok) {
+          console.log("invalid token", accessToken);
           signOut();
           persistor.purge();
         }
       }
-
-      if(loginSession?.provider === "youtube") {
-        const res = await fetch("/api/validate-session?platform=youtube", {
-          headers: {
-            "Authorization": "OAuth " + loginSession?.accessToken 
-          }
-        })
-        if(!res.ok) {
-          console.log("invalid token", loginSession?.accessToken);
-          signOut();
-          persistor.purge();
-        }
-      }
-    } else {
-      console.log("no login session");
     }
-  }
+  };
+  
+
+  // const validateSession = async () => {
+  //   if (loginSession?.provider !== undefined) {
+  //     if (loginSession?.provider === "twitch") {
+  //       if (loginSession !== undefined) {
+  //         const res = await fetch("/api/validate-session?platform=twitch", {
+  //           headers: {
+  //             "Authorization": "OAuth " + loginSession?.accessToken
+  //           }
+  //         })
+  //         if (!res.ok) {
+  //           console.log("invalid token", loginSession?.accessToken);
+  //           signOut();
+  //           persistor.purge();
+  //         }
+  //       }
+  //     }
+
+
+  //     if (loginSession?.provider === "youtube") {
+  //       const res = await fetch("/api/validate-session?platform=youtube", {
+  //         headers: {
+  //           "Authorization": "OAuth " + loginSession?.accessToken
+  //         }
+  //       })
+  //       if (!res.ok) {
+  //         console.log("invalid token", loginSession?.accessToken);
+  //         signOut();
+  //         persistor.purge();
+  //       }
+  //     }
+  //   } else {
+  //     console.log("no login session");
+  //   }
+  // }
 
   useEffect(() => {
     if (loginSession?.user?.name === undefined) {
       dispatch(saveLoginSession(session))
     }
-    if(session?.provider === "twitch") {
+    if (session?.provider === "twitch") {
       dispatch(saveTwitchSession(session))
       getTwitch()
 
     }
-    if(session?.provider === "google") {
+    if (session?.provider === "google") {
       dispatch(saveYoutubeSession(session))
       // getYoutube()
 
@@ -135,7 +167,7 @@ export const Login = () => {
             <DropdownMenuLabel>My Account: {session?.user?.name}</DropdownMenuLabel>
             <DropdownMenuSeparator />
 
-            <DropdownMenuItem onClick={() => {persistor.purge(); signOut()}}>
+            <DropdownMenuItem onClick={() => { persistor.purge(); signOut() }}>
               <span>Sign-out</span>
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => signIn("twitch")}>

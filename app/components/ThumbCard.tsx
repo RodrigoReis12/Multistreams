@@ -17,7 +17,7 @@ type Props = {
 
 export const ThumbCard = ({name, viewCount, thumbUrl, title, game, platform, chnId}: Props) => {
 
-  const select = useSelector((state) => state.name)
+  // const select = useSelector((state) => state.name)
   const dispatch = useDispatch()
   const chnInfo = {
     name: name,

@@ -2,6 +2,12 @@ import NextAuth from "next-auth/next"
 import TwitchProvider from 'next-auth/providers/twitch'
 import GoogleProvider from 'next-auth/providers/google'
 
+declare module 'next-auth' {
+  interface Session {
+    accessToken?: string;
+  }
+}
+
 export default NextAuth({
   providers: [
     TwitchProvider({

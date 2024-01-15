@@ -10,10 +10,10 @@ export const StreamScreen = () => {
   const view = useSelector((state: RootState) => state.counter.view)
   const selectId = useSelector((state: RootState) => state.counter.chnId)
   const selectPlt = useSelector((state: RootState) => state.counter.platform)
-  const [screen1Info, setScreen1Info] = useState({})
-  const [screen2Info, setScreen2Info] = useState({})
-  const [screen3Info, setScreen3Info] = useState({})
-  const [screen4Info, setScreen4Info] = useState({})
+  const [screen1Info, setScreen1Info]: any = useState({})
+  const [screen2Info, setScreen2Info]: any = useState({})
+  const [screen3Info, setScreen3Info]: any = useState({})
+  const [screen4Info, setScreen4Info]: any = useState({})
 
 
 
