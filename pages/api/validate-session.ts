@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 type ResponseData = {
-  message: string
+  message: any
 }
 
 const twitch_endpoint = "https://id.twitch.tv/oauth2/validate"
@@ -12,7 +12,7 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {
-  const token = req.headers.authorization;
+  const token: any = req.headers.authorization;
   const { method, query } = req;
   const platform = query.platform;
 

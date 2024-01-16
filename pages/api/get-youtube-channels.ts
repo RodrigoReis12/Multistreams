@@ -2,7 +2,8 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import _ from "lodash"
 
 type ResponseData = {
-  message: string
+  message: any
+  platform: string
 }
 
 type Line = {
@@ -22,7 +23,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {
-  const token = req.headers.authorization
+  const token: any = req.headers.authorization
   let data = []
   const bearer = _.replace(token, "OAuth", "Bearer")
   const channels = await (await fetch(endpoint, {
@@ -36,7 +37,7 @@ export default async function handler(
   const getData = () => {
 
     const response = Promise.all(
-      channels.items.map(async (i) => 
+      channels.items.map(async (i: any) => 
       await (await fetch(video_endpoint+"&channelId="+i.snippet.resourceId.channelId, {
         headers: {
           "Authorization": bearer

@@ -2,7 +2,8 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import _ from 'lodash'
 
 type ResponseData = {
-  message: string
+  message: any
+  platform: string
 }
 
    const endpoint = "https://id.twitch.tv/oauth2/validate"
@@ -13,7 +14,7 @@ export default async function handler(
   res: NextApiResponse<ResponseData>
 ) {
 
-  const token = req.headers.authorization
+  const token: any = req.headers.authorization
   const bearer = _.replace(token, "OAuth", "Bearer")
   const { method, query } = req
   const keyword = query.keyword
@@ -32,9 +33,9 @@ export default async function handler(
   })).json()
 
   const result = () => {
-    let tmp = []
+    let tmp: any = []
     if(response.data.length !== 0) {
-      response.data.map((value) => {
+      response.data.map((value: any) => {
         let record = {
           channel_id: value.broadcaster_login,
           channel_name: value.display_name,
@@ -48,7 +49,6 @@ export default async function handler(
     }
     return tmp
   }
-  res.status(200).json({message: {data: result(), platform: "twitch"}})
-
+  res.status(200).json({message: {data: result()}, platform: "twitch"})
 }
 

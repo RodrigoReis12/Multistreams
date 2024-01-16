@@ -2,7 +2,8 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import _ from 'lodash'
 
 type ResponseData = {
-  message: string
+  message: any
+  platform: string
 }
 
 const endpoint = "https://www.googleapis.com/youtube/v3/search?part=snippet&type=channel&maxResult=10&q="
@@ -12,7 +13,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {
-  const token = req.headers.authorization
+  const token: any = req.headers.authorization
   const bearer = _.replace(token, "OAuth", "Bearer")
   // const { method, query } = req
   // const keyword = query.keyword
@@ -25,7 +26,7 @@ export default async function handler(
 
   const getData = () => {
     const data = Promise.all(
-      channels.items.map(async (i) => 
+      channels.items.map(async (i: any) => 
         await (await fetch(video_endpoint + "&channelId=" + i.snippet.channelId, {
           headers: {
             "Authorization": bearer
@@ -58,7 +59,6 @@ export default async function handler(
   }
   getData().
   then(data => {
-    res.status(200).json({message: {data: data, platform: "youtube"}})
+    res.status(200).json({message: {data: data}, platform: "youtube"})
   })
-  
 }

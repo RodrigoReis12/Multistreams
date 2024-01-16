@@ -35,7 +35,7 @@ export const StreamScreen = () => {
         setScreen1Info({ id: selectId, plt: selectPlt })
         break;
     }
-  }, [selectId])
+  }, [selectId, screen, selectPlt])
 
   return (
     <div className='w-full h-full'>

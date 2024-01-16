@@ -11,7 +11,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const token = req.headers.authorization;
+  const token: any = req.headers.authorization;
   const response = await fetch(validate_endpoint, {
     headers: {
       "Authorization": token
@@ -30,7 +30,7 @@ export default async function handler(
         .then((tmp) => {
           let chn_list: string = ""
 
-          const result = tmp.data.map((value, index) => {
+          const result = tmp.data.map((value: any, index: number) => {
             if (index === 0) {
               chn_list = chn_list + "?login=" + value.broadcaster_login
             } else {
