@@ -21,6 +21,7 @@ export default NextAuth({
       authorization: { params: { scope: "openid email profile https://www.googleapis.com/auth/youtube.readonly"}},
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async session({ session, user, token }) {
       return {...session, ...token }
