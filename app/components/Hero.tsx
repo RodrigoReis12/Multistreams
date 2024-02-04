@@ -54,7 +54,7 @@ export const Hero = () => {
               {/* search result */}
               { Object.keys(searchResult).length !== 0 && (
                 searchResult.message.data.map((value: any) => (
-                  <ChannelCard key={value.channel_id} iconUrl={value.thumbnail_url} channel_name={value.channel_name} channel_id={value.channel_id} platform={searchResult.message.platform} title={value.title} game_name={value.game_name} is_live={value.is_live} />
+                  <ChannelCard key={value.channel_id} iconUrl={value.thumbnail_url} channel_name={value.channel_name} channel_id={value.channel_id} platform={searchResult.platform} title={value.title} game_name={value.game_name} is_live={value.is_live} />
                 ))
               )}
 
@@ -99,8 +99,7 @@ export const Hero = () => {
                {/* search result */}
                { Object.keys(searchResult).length !== 0 && (
                 searchResult.message.data.map((value: any) => (
-                  <ChannelCard key={value.channel_id} iconUrl={value.thumbnail_url} channel_name={value.channel_name} channel_id={value.channel_id} platform={searchResult.message.platform} title={value.title} game_name={value.game_name} is_live={value.is_live} />
-                  // <>{value.channel_name}</>
+                  <ChannelCard key={value.channel_id} iconUrl={value.thumbnail_url} channel_name={value.channel_name} channel_id={value.channel_id} platform={searchResult.platform} title={value.title} game_name={value.game_name} is_live={value.is_live} />
                 ))
               )}
             </div>

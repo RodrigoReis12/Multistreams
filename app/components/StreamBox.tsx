@@ -31,7 +31,7 @@ export const StreamBox = ({ streamId, platform, chat = false }: Props) => {
   }
 
   return (
-    <div className='h-min[550px] h-full shadow-2xl shadow-indigo-500/50'>
+    <div className='h-min[550px] h-full shadow-md shadow-indigo-100/50'>
       {platform === "twitch" &&
         <div className='grid grid-cols-4 h-full'>
           <div className={chatClass}>

@@ -21,6 +21,7 @@ export const ChannelCard = ({ iconUrl, channel_name, channel_id, platform, title
   const handleClick = () => {
     dispatch(selected(chnInfo))
     dispatch(saveSearchResult({}))
+    console.log(chnInfo)
   }
 
   const chnInfo = {

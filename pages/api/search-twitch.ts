@@ -51,4 +51,3 @@ export default async function handler(
   }
   res.status(200).json({message: {data: result()}, platform: "twitch"})
 }
-

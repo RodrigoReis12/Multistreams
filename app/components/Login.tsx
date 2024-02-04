@@ -93,40 +93,7 @@ export const Login = () => {
   };
   
 
-  // const validateSession = async () => {
-  //   if (loginSession?.provider !== undefined) {
-  //     if (loginSession?.provider === "twitch") {
-  //       if (loginSession !== undefined) {
-  //         const res = await fetch("/api/validate-session?platform=twitch", {
-  //           headers: {
-  //             "Authorization": "OAuth " + loginSession?.accessToken
-  //           }
-  //         })
-  //         if (!res.ok) {
-  //           console.log("invalid token", loginSession?.accessToken);
-  //           signOut();
-  //           persistor.purge();
-  //         }
-  //       }
-  //     }
-
-
-  //     if (loginSession?.provider === "youtube") {
-  //       const res = await fetch("/api/validate-session?platform=youtube", {
-  //         headers: {
-  //           "Authorization": "OAuth " + loginSession?.accessToken
-  //         }
-  //       })
-  //       if (!res.ok) {
-  //         console.log("invalid token", loginSession?.accessToken);
-  //         signOut();
-  //         persistor.purge();
-  //       }
-  //     }
-  //   } else {
-  //     console.log("no login session");
-  //   }
-  // }
+  
 
   useEffect(() => {
     if (loginSession?.user?.name === undefined) {
@@ -155,11 +122,10 @@ export const Login = () => {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" size="icon">
-              <Avatar>
+              <Avatar className='w-8 h-8'>
                 <AvatarImage src={loginSession?.user?.image} />
-                <AvatarFallback>UN</AvatarFallback>
+                  <AvatarFallback >UN</AvatarFallback>
               </Avatar>
-              <span className='sr-only'>Toggle theme</span>
             </Button>
           </DropdownMenuTrigger>
 

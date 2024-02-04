@@ -31,9 +31,6 @@ export const ThumbCard = ({name, viewCount, thumbUrl, title, game, platform, chn
       <div className='flex flex-col xl:hover:scale-105 transition-transform duration-200'>
         <div className='relative'>
           <Image src={thumbUrl} alt="thumb" width={320} height={180} />
-          <div className='absolute top-2 left-2 px-1 rounded bg-red-500'>
-            <p className='text-white text-sm font-bold'>Live</p>
-          </div>
           <div className='absolute top-2 left-2 px-1 rounded bg-gray-900/70'>
             <p className='text-white text-sm font-bold'>{viewCount} viewers</p>
           </div>
